@@ -26,7 +26,7 @@
       "examples": [
         "User: /announcements PEPE → Bot: Recent PEPE announcements..."
       ],
-      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars."
+      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars. Degrades gracefully when X env vars are missing."
     },
     {
       "command": "/digest",
@@ -39,7 +39,7 @@
     },
     {
       "command": "/help",
-      "description": "Shows all public commands and usage examples.",
+      "description": "Shows all public commands, usage examples, and a short reminder to create TELEGRAM_BOT_TOKEN with the verified @BotFather instead of sending tokens in chat.",
       "usage": "/help",
       "examples": [
         "User: /help → Bot: MemePulse Watcher commands..."
@@ -163,6 +163,14 @@
     {
       "role": "assistant",
       "content": "Built MemePulse Watcher as a complete Telegram bot with group admin setup, token tracking, CoinGecko market data, scheduled digests, optional ChainGPT summaries, CookMyBots X Proxy announcement monitoring, MongoDB persistence with in-memory fallback, docs, and deployment-safe polling.\n\nFiles touched (27): .env.sample, DOCS.md, README.md, eslint.config.js, package.json, src/bot.js…\nValidation: ✅ project passes syntax/basic checks after this edit."
+    },
+    {
+      "role": "user",
+      "content": "How do I get my telegram bot token?"
+    },
+    {
+      "role": "assistant",
+      "content": "Updated the token setup docs, clarified TELEGRAM_BOT_TOKEN in .env.sample, and added a safe /help reminder without changing existing commands or transport behavior.\n\nFiles touched (5): .env.sample, DOCS.md, README.md, package.json, src/commands/help.js\nValidation: ✅ project passes syntax/basic checks after this edit."
     }
   ],
   "createdBy": "6a4546a3b431b74f8b8ed94f",
@@ -282,9 +290,9 @@
     {
       "key": "TELEGRAM_BOT_TOKEN",
       "title": "Telegram Bot Token",
-      "description": "Token used by grammY to connect to Telegram.",
-      "usage": "Required at boot. If missing, the bot prints guidance and exits safely.",
-      "howToGet": "Create a bot with BotFather on Telegram.",
+      "description": "Required token used by grammY to connect this Telegram bot to Telegram transport.",
+      "usage": "Set this in the deployment environment. The bot exits with guidance if it is missing.",
+      "howToGet": "Open Telegram, search for the verified @BotFather, send /newbot, choose a display name, choose a unique username ending in bot, then copy the token BotFather returns.",
       "example": "123456:ABCDEF...",
       "isSecret": true,
       "required": true
@@ -303,7 +311,7 @@
       "key": "COOKMYBOTS_AI_ENDPOINT",
       "title": "CookMyBots AI Endpoint",
       "description": "Base URL for CookMyBots AI Gateway.",
-      "usage": "Used for ChainGPT Web3 digest summaries. The bot appends /chaingpt/chat internally.",
+      "usage": "Used for ChainGPT Web3 digest summaries. The bot appends AI routes internally.",
       "howToGet": "CookMyBots provides this endpoint.",
       "example": "https://api.cookmybots.com/api/ai",
       "isSecret": false,
@@ -363,7 +371,7 @@
       "key": "COOKMYBOTS_X_ENDPOINT",
       "title": "CookMyBots X Proxy Endpoint",
       "description": "Base endpoint for CookMyBots X Proxy.",
-      "usage": "Used to fetch official X posts. The bot never calls X APIs directly.",
+      "usage": "Used to fetch official X posts. If missing, X announcement features are disabled safely.",
       "howToGet": "Provided by CookMyBots after enabling X integration.",
       "example": "https://api.cookmybots.com/api/x",
       "isSecret": false,
@@ -373,8 +381,8 @@
       "key": "COOKMYBOTS_X_KEY",
       "title": "CookMyBots X Proxy Key",
       "description": "Secret key for CookMyBots X Proxy.",
-      "usage": "Required for X announcement monitoring. Users must connect X in the CookMyBots UI.",
-      "howToGet": "Provided by CookMyBots.",
+      "usage": "Required for X announcement monitoring. If missing, /announcements and alert checks degrade gracefully.",
+      "howToGet": "Provided by CookMyBots. Also connect an X account in the CookMyBots UI.",
       "example": "cmb_x_...",
       "isSecret": true,
       "required": false
@@ -442,7 +450,7 @@
     },
     {
       "command": "/help",
-      "description": "Shows all public commands and usage examples.",
+      "description": "Shows all public commands, usage examples, and a short reminder to create TELEGRAM_BOT_TOKEN with the verified @BotFather instead of sending tokens in chat.",
       "usage": "/help",
       "examples": [
         "User: /help → Bot: MemePulse Watcher commands..."
@@ -519,7 +527,7 @@
       "examples": [
         "User: /announcements PEPE → Bot: Recent PEPE announcements..."
       ],
-      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars."
+      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars. Degrades gracefully when X env vars are missing."
     },
     {
       "command": "/settime",
@@ -592,7 +600,7 @@
       "runId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2c4arz:oeck1n",
       "lastUserMessage": "How do I get my telegram bot token?",
       "startedAt": "2026-07-01T17:13:41.569Z",
-      "updatedAt": "2026-07-01T17:14:37.235Z",
+      "updatedAt": "2026-07-01T17:14:37.568Z",
       "message": "Syncing environment template with used env variables…",
       "commands": [
         {
@@ -672,7 +680,7 @@
     "runId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2c4arz:oeck1n",
     "lastUserMessage": "How do I get my telegram bot token?",
     "startedAt": "2026-07-01T17:13:41.569Z",
-    "updatedAt": "2026-07-01T17:14:37.235Z",
+    "updatedAt": "2026-07-01T17:14:37.568Z",
     "message": "Syncing environment template with used env variables…",
     "commands": [
       {

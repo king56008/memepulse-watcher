@@ -12,6 +12,10 @@
     "file": "src/commands/insights.js"
   },
   {
+    "name": "cancel",
+    "file": "src/commands/cancel.js"
+  },
+  {
     "name": "digest",
     "file": "src/commands/insights.js"
   },

@@ -2,174 +2,76 @@
   "projectId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1",
   "commands": [
     {
-      "command": "/addtoken",
-      "description": "Adds a token or memecoin to the current group's watchlist.",
-      "usage": "/addtoken PEPE or /addtoken PEPE x=officialHandle",
-      "examples": [
-        "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE."
-      ],
-      "example": "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE.",
-      "notes": "Admin only. Optional x= adds official X handles for announcement monitoring."
+      "name": "addtoken",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/alerts",
-      "description": "Turns immediate major announcement alerts on or off.",
-      "usage": "/alerts on or /alerts off",
-      "examples": [
-        "Admin: /alerts on → Bot: Immediate major announcement alerts are on."
-      ],
-      "example": "Admin: /alerts on → Bot: Immediate major announcement alerts are on.",
-      "notes": "Admin only."
+      "name": "alerts",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/announcements",
-      "description": "Shows recent detected official X announcements for a token.",
-      "usage": "/announcements PEPE",
-      "examples": [
-        "User: /announcements PEPE → Bot: Recent PEPE announcements..."
-      ],
-      "example": "User: /announcements PEPE → Bot: Recent PEPE announcements...",
-      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars. Degrades gracefully when X env vars are missing."
+      "name": "announcements",
+      "file": "src/commands/insights.js"
     },
     {
-      "command": "/digest",
-      "description": "Generates an on-demand daily-style token digest.",
-      "usage": "/digest PEPE",
-      "examples": [
-        "User: /digest PEPE → Bot: Building the digest now..."
-      ],
-      "example": "User: /digest PEPE → Bot: Building the digest now...",
-      "notes": "Uses ChainGPT through CookMyBots AI Gateway when configured."
+      "name": "cancel",
+      "file": "src/commands/cancel.js"
     },
     {
-      "command": "/help",
-      "description": "Shows all public commands, usage examples, and a short reminder to create TELEGRAM_BOT_TOKEN with the verified @BotFather instead of sending tokens in chat.",
-      "usage": "/help",
-      "examples": [
-        "User: /help → Bot: MemePulse Watcher commands..."
-      ],
-      "example": "User: /help → Bot: MemePulse Watcher commands...",
-      "notes": "General command."
+      "name": "digest",
+      "file": "src/commands/insights.js"
     },
     {
-      "command": "/pause",
-      "description": "Pauses scheduled digests and alerts for the group.",
-      "usage": "/pause",
-      "examples": [
-        "Admin: /pause → Bot: Scheduled digests and alerts are paused for this group."
-      ],
-      "example": "Admin: /pause → Bot: Scheduled digests and alerts are paused for this group.",
-      "notes": "Admin only."
+      "name": "help",
+      "file": "src/commands/help.js"
     },
     {
-      "command": "/price",
-      "description": "Shows current price, 24h movement, volume, market cap, and data timestamp.",
-      "usage": "/price PEPE",
-      "examples": [
-        "User: /price PEPE → Bot: PEPE price..."
-      ],
-      "example": "User: /price PEPE → Bot: PEPE price...",
-      "notes": "Uses CoinGecko market data."
+      "name": "pause",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/removetoken",
-      "description": "Removes a token from the current group's watchlist.",
-      "usage": "/removetoken PEPE",
-      "examples": [
-        "Admin: /removetoken PEPE → Bot: Removed PEPE from this group's watchlist."
-      ],
-      "example": "Admin: /removetoken PEPE → Bot: Removed PEPE from this group's watchlist.",
-      "notes": "Admin only."
+      "name": "price",
+      "file": "src/commands/insights.js"
     },
     {
-      "command": "/reset",
-      "description": "Clears the user's saved bot memory for the current chat.",
-      "usage": "/reset",
-      "examples": [
-        "User: /reset → Bot: Your MemePulse memory has been cleared for this chat."
-      ],
-      "example": "User: /reset → Bot: Your MemePulse memory has been cleared for this chat.",
-      "notes": "Memory clear command."
+      "name": "removetoken",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/resume",
-      "description": "Resumes scheduled digests and alerts for the group.",
-      "usage": "/resume",
-      "examples": [
-        "Admin: /resume → Bot: Scheduled digests and alerts are resumed for this group."
-      ],
-      "example": "Admin: /resume → Bot: Scheduled digests and alerts are resumed for this group.",
-      "notes": "Admin only."
+      "name": "reset",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/settime",
-      "description": "Sets daily digest delivery time for the group.",
-      "usage": "/settime 09:00",
-      "examples": [
-        "Admin: /settime 09:00 → Bot: Daily digest time set to 09:00."
-      ],
-      "example": "Admin: /settime 09:00 → Bot: Daily digest time set to 09:00.",
-      "notes": "Admin only. Uses 24-hour HH:mm format."
+      "name": "resume",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/settimezone",
-      "description": "Sets the timezone used for scheduled digests.",
-      "usage": "/settimezone UTC",
-      "examples": [
-        "Admin: /settimezone America/New_York → Bot: Timezone set to America/New_York."
-      ],
-      "example": "Admin: /settimezone America/New_York → Bot: Timezone set to America/New_York.",
-      "notes": "Admin only. Must be a valid IANA timezone."
+      "name": "settime",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/settings",
-      "description": "Displays the group's current MemePulse configuration.",
-      "usage": "/settings",
-      "examples": [
-        "Admin: /settings → Bot: Group settings..."
-      ],
-      "example": "Admin: /settings → Bot: Group settings...",
-      "notes": "Admin only."
+      "name": "settimezone",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/setup",
-      "description": "Initializes the current group for token tracking.",
-      "usage": "/setup",
-      "examples": [
-        "Admin: /setup → Bot: MemePulse is set up for this chat."
-      ],
-      "example": "Admin: /setup → Bot: MemePulse is set up for this chat.",
-      "notes": "Admin only in groups."
+      "name": "settings",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/start",
-      "description": "Introduces MemePulse Watcher and explains how group admins can configure token insights.",
-      "usage": "/start",
-      "examples": [
-        "User: /start → Bot: Welcome to MemePulse Watcher..."
-      ],
-      "example": "User: /start → Bot: Welcome to MemePulse Watcher...",
-      "notes": "General command."
+      "name": "setup",
+      "file": "src/commands/admin.js"
     },
     {
-      "command": "/tokens",
-      "description": "Lists tokens tracked in the current group.",
-      "usage": "/tokens",
-      "examples": [
-        "User: /tokens → Bot: Tracked tokens: PEPE, DOGE"
-      ],
-      "example": "User: /tokens → Bot: Tracked tokens: PEPE, DOGE",
-      "notes": "Group command."
+      "name": "start",
+      "file": "src/commands/start.js"
     },
     {
-      "command": "/trend",
-      "description": "Shows a compact trend summary for a token.",
-      "usage": "/trend PEPE",
-      "examples": [
-        "User: /trend PEPE → Bot: PEPE trend..."
-      ],
-      "example": "User: /trend PEPE → Bot: PEPE trend...",
-      "notes": "Informational only, not financial advice."
+      "name": "tokens",
+      "file": "src/commands/insights.js"
+    },
+    {
+      "name": "trend",
+      "file": "src/commands/insights.js"
     }
   ],
   "aiMessages": [
@@ -2405,12 +2307,12 @@
       "answerMode": "chitchat"
     },
     "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama": {
-      "phase": "planning",
+      "phase": "status",
       "stage": "chat",
       "runId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama",
       "lastUserMessage": "I've added this commands but it's not promoting me to add any details what do I do",
       "startedAt": "2026-07-01T17:13:41.569Z",
-      "updatedAt": "2026-07-01T17:45:48.545Z",
+      "updatedAt": "2026-07-01T17:45:48.450Z",
       "message": "Preparing workspace for safe edits…",
       "commands": [
         {
@@ -3442,12 +3344,12 @@
     }
   },
   "runStatus": {
-    "phase": "planning",
+    "phase": "status",
     "stage": "chat",
     "runId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama",
     "lastUserMessage": "I've added this commands but it's not promoting me to add any details what do I do",
     "startedAt": "2026-07-01T17:13:41.569Z",
-    "updatedAt": "2026-07-01T17:45:48.545Z",
+    "updatedAt": "2026-07-01T17:45:48.450Z",
     "message": "Preparing workspace for safe edits…",
     "commands": [
       {

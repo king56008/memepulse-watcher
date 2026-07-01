@@ -2405,12 +2405,12 @@
       "answerMode": "chitchat"
     },
     "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama": {
-      "phase": "planning",
+      "phase": "status",
       "stage": "chat",
       "runId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama",
       "lastUserMessage": "I've added this commands but it's not promoting me to add any details what do I do",
       "startedAt": "2026-07-01T17:13:41.569Z",
-      "updatedAt": "2026-07-01T17:45:48.545Z",
+      "updatedAt": "2026-07-01T17:45:48.450Z",
       "message": "Preparing workspace for safe edits…",
       "commands": [
         {
@@ -3442,12 +3442,12 @@
     }
   },
   "runStatus": {
-    "phase": "planning",
+    "phase": "status",
     "stage": "chat",
     "runId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama",
     "lastUserMessage": "I've added this commands but it's not promoting me to add any details what do I do",
     "startedAt": "2026-07-01T17:13:41.569Z",
-    "updatedAt": "2026-07-01T17:45:48.545Z",
+    "updatedAt": "2026-07-01T17:45:48.450Z",
     "message": "Preparing workspace for safe edits…",
     "commands": [
       {

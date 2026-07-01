@@ -3,52 +3,57 @@
   "commands": [
     {
       "command": "/addtoken",
-      "description": "Adds a token or memecoin to the current group's watchlist.",
+      "description": "Adds a token to the current group watchlist and optionally attaches an official X handle.",
       "usage": "/addtoken PEPE or /addtoken PEPE x=officialHandle",
       "examples": [
-        "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE."
+        "Admin: /addtoken → Bot prompts for PEPE, then X handle or skip.",
+        "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE with official X handle @pepecoineth."
       ],
-      "example": "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE.",
-      "notes": "Admin only. Optional x= adds official X handles for announcement monitoring."
+      "notes": "Admin only. Missing token starts a two-step prompt."
     },
     {
       "command": "/alerts",
       "description": "Turns immediate major announcement alerts on or off.",
       "usage": "/alerts on or /alerts off",
       "examples": [
-        "Admin: /alerts on → Bot: Immediate major announcement alerts are on."
+        "Admin: /alerts → Bot prompts for on or off."
       ],
-      "example": "Admin: /alerts on → Bot: Immediate major announcement alerts are on.",
       "notes": "Admin only."
     },
     {
       "command": "/announcements",
-      "description": "Shows recent detected official X announcements for a token.",
+      "description": "Shows recent official X announcements for a token.",
       "usage": "/announcements PEPE",
       "examples": [
         "User: /announcements PEPE → Bot: Recent PEPE announcements..."
       ],
-      "example": "User: /announcements PEPE → Bot: Recent PEPE announcements...",
-      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars. Degrades gracefully when X env vars are missing."
+      "notes": "Requires an official X handle plus CookMyBots X Proxy env vars. Degrades gracefully when missing."
+    },
+    {
+      "command": "/cancel",
+      "description": "Cancels the current user's pending missing-detail prompt in the current chat.",
+      "usage": "/cancel",
+      "examples": [
+        "User: /cancel → Bot: Canceled any pending prompt."
+      ],
+      "notes": "Users can also reply cancel or stop."
     },
     {
       "command": "/digest",
-      "description": "Generates an on-demand daily-style token digest.",
+      "description": "Generates an on-demand daily-style token digest when CookMyBots AI is configured.",
       "usage": "/digest PEPE",
       "examples": [
-        "User: /digest PEPE → Bot: Building the digest now..."
+        "User: /digest → Bot prompts for token symbol."
       ],
-      "example": "User: /digest PEPE → Bot: Building the digest now...",
-      "notes": "Uses ChainGPT through CookMyBots AI Gateway when configured."
+      "notes": "Gracefully reports when AI env vars are missing."
     },
     {
       "command": "/help",
-      "description": "Shows all public commands, usage examples, and a short reminder to create TELEGRAM_BOT_TOKEN with the verified @BotFather instead of sending tokens in chat.",
+      "description": "Shows public commands, examples, admin-only notes, prompt behavior, and BotFather token guidance.",
       "usage": "/help",
       "examples": [
-        "User: /help → Bot: MemePulse Watcher commands..."
+        "User: /help → Bot: Coin Tailer commands..."
       ],
-      "example": "User: /help → Bot: MemePulse Watcher commands...",
       "notes": "General command."
     },
     {
@@ -58,27 +63,24 @@
       "examples": [
         "Admin: /pause → Bot: Scheduled digests and alerts are paused for this group."
       ],
-      "example": "Admin: /pause → Bot: Scheduled digests and alerts are paused for this group.",
       "notes": "Admin only."
     },
     {
       "command": "/price",
-      "description": "Shows current price, 24h movement, volume, market cap, and data timestamp.",
+      "description": "Shows current price, 24h movement, volume, market cap, and data timestamp using CoinGecko.",
       "usage": "/price PEPE",
       "examples": [
-        "User: /price PEPE → Bot: PEPE price..."
+        "User: /price → Bot prompts for token symbol."
       ],
-      "example": "User: /price PEPE → Bot: PEPE price...",
-      "notes": "Uses CoinGecko market data."
+      "notes": "If one watched token exists, the prompt offers it as the default."
     },
     {
       "command": "/removetoken",
-      "description": "Removes a token from the current group's watchlist.",
+      "description": "Removes a token from the current group watchlist.",
       "usage": "/removetoken PEPE",
       "examples": [
-        "Admin: /removetoken PEPE → Bot: Removed PEPE from this group's watchlist."
+        "Admin: /removetoken → Bot prompts with tracked token choices."
       ],
-      "example": "Admin: /removetoken PEPE → Bot: Removed PEPE from this group's watchlist.",
       "notes": "Admin only."
     },
     {
@@ -86,9 +88,8 @@
       "description": "Clears the user's saved bot memory for the current chat.",
       "usage": "/reset",
       "examples": [
-        "User: /reset → Bot: Your MemePulse memory has been cleared for this chat."
+        "User: /reset → Bot: Your Coin Tailer memory has been cleared for this chat."
       ],
-      "example": "User: /reset → Bot: Your MemePulse memory has been cleared for this chat.",
       "notes": "Memory clear command."
     },
     {
@@ -98,7 +99,6 @@
       "examples": [
         "Admin: /resume → Bot: Scheduled digests and alerts are resumed for this group."
       ],
-      "example": "Admin: /resume → Bot: Scheduled digests and alerts are resumed for this group.",
       "notes": "Admin only."
     },
     {
@@ -106,10 +106,9 @@
       "description": "Sets daily digest delivery time for the group.",
       "usage": "/settime 09:00",
       "examples": [
-        "Admin: /settime 09:00 → Bot: Daily digest time set to 09:00."
+        "Admin: /settime → Bot prompts for HH:mm."
       ],
-      "example": "Admin: /settime 09:00 → Bot: Daily digest time set to 09:00.",
-      "notes": "Admin only. Uses 24-hour HH:mm format."
+      "notes": "Admin only. Validates 24-hour HH:mm."
     },
     {
       "command": "/settimezone",
@@ -118,37 +117,33 @@
       "examples": [
         "Admin: /settimezone America/New_York → Bot: Timezone set to America/New_York."
       ],
-      "example": "Admin: /settimezone America/New_York → Bot: Timezone set to America/New_York.",
-      "notes": "Admin only. Must be a valid IANA timezone."
+      "notes": "Admin only. Validates IANA timezone."
     },
     {
       "command": "/settings",
-      "description": "Displays the group's current MemePulse configuration.",
+      "description": "Displays the group's current Coin Tailer configuration.",
       "usage": "/settings",
       "examples": [
         "Admin: /settings → Bot: Group settings..."
       ],
-      "example": "Admin: /settings → Bot: Group settings...",
       "notes": "Admin only."
     },
     {
       "command": "/setup",
-      "description": "Initializes the current group for token tracking.",
+      "description": "Initializes the current group for Coin Tailer tracking.",
       "usage": "/setup",
       "examples": [
-        "Admin: /setup → Bot: MemePulse is set up for this chat."
+        "Admin: /setup → Bot: Coin Tailer is set up for this chat."
       ],
-      "example": "Admin: /setup → Bot: MemePulse is set up for this chat.",
-      "notes": "Admin only in groups."
+      "notes": "Admin only."
     },
     {
       "command": "/start",
-      "description": "Introduces MemePulse Watcher and explains how group admins can configure token insights.",
+      "description": "Greets the user or group, summarizes Coin Tailer, and points to /help.",
       "usage": "/start",
       "examples": [
-        "User: /start → Bot: Welcome to MemePulse Watcher..."
+        "User: /start → Bot: Welcome to Coin Tailer..."
       ],
-      "example": "User: /start → Bot: Welcome to MemePulse Watcher...",
       "notes": "General command."
     },
     {
@@ -158,7 +153,6 @@
       "examples": [
         "User: /tokens → Bot: Tracked tokens: PEPE, DOGE"
       ],
-      "example": "User: /tokens → Bot: Tracked tokens: PEPE, DOGE",
       "notes": "Group command."
     },
     {
@@ -168,7 +162,6 @@
       "examples": [
         "User: /trend PEPE → Bot: PEPE trend..."
       ],
-      "example": "User: /trend PEPE → Bot: PEPE trend...",
       "notes": "Informational only, not financial advice."
     }
   ],
@@ -198,6 +191,14 @@
     {
       "role": "assistant",
       "content": "That sounds great! It looks like you're making good progress with the bot. How's everything else going with the development?"
+    },
+    {
+      "role": "user",
+      "content": "I've added this commands but it's not promoting me to add any details what do I do"
+    },
+    {
+      "role": "assistant",
+      "content": "Added Mongo-backed pending prompt flows for missing command details, tightened required MongoDB startup validation, preserved Telegram-only behavior, and updated Coin Tailer command docs.\n\nFiles touched (16): .env.sample, DOCS.md, commands.json, package.json, src/bot.js, src/commands/admin.js…\nValidation: ✅ project passes syntax/basic checks after this edit."
     }
   ],
   "createdBy": "6a4546a3b431b74f8b8ed94f",
@@ -317,9 +318,9 @@
     {
       "key": "TELEGRAM_BOT_TOKEN",
       "title": "Telegram Bot Token",
-      "description": "Required token used by grammY to connect this Telegram bot to Telegram transport.",
-      "usage": "Set this in the deployment environment. The bot exits with guidance if it is missing.",
-      "howToGet": "Open Telegram, search for the verified @BotFather, send /newbot, choose a display name, choose a unique username ending in bot, then copy the token BotFather returns.",
+      "description": "Required token used by grammY to connect this Telegram bot to Telegram.",
+      "usage": "The bot exits with guidance if missing.",
+      "howToGet": "Create it with the verified @BotFather in Telegram.",
       "example": "123456:ABCDEF...",
       "isSecret": true,
       "required": true
@@ -327,19 +328,19 @@
     {
       "key": "MONGODB_URI",
       "title": "MongoDB URI",
-      "description": "Stores groups, tokens, subscriptions, snapshots, X posts, digest runs, audit logs, cursors, and memory.",
-      "usage": "If missing, the bot runs with temporary in-memory storage.",
+      "description": "Required database connection for watchlists, settings, pending prompts, scheduler state, X cursors, snapshots, audit logs, and memory.",
+      "usage": "The bot exits with a sanitized diagnostic if missing or unreachable.",
       "howToGet": "Use MongoDB Atlas or another MongoDB provider.",
       "example": "mongodb+srv://user:pass@cluster.example/db",
       "isSecret": true,
-      "required": false
+      "required": true
     },
     {
       "key": "COOKMYBOTS_AI_ENDPOINT",
       "title": "CookMyBots AI Endpoint",
-      "description": "Base URL for CookMyBots AI Gateway.",
-      "usage": "Used for ChainGPT Web3 digest summaries. The bot appends AI routes internally.",
-      "howToGet": "CookMyBots provides this endpoint.",
+      "description": "Base URL for the CookMyBots AI Gateway.",
+      "usage": "Used for AI digest generation. The bot appends routes internally.",
+      "howToGet": "Provided by CookMyBots.",
       "example": "https://api.cookmybots.com/api/ai",
       "isSecret": false,
       "required": false
@@ -347,8 +348,8 @@
     {
       "key": "COOKMYBOTS_AI_KEY",
       "title": "CookMyBots AI Key",
-      "description": "Secret key for CookMyBots AI Gateway.",
-      "usage": "Enables AI-generated Web3 summaries. If missing, deterministic summaries are used.",
+      "description": "Secret key for the CookMyBots AI Gateway.",
+      "usage": "Enables /digest. If missing, digest generation responds with a helpful message.",
       "howToGet": "Provided by CookMyBots.",
       "example": "cmb_ai_...",
       "isSecret": true,
@@ -357,9 +358,9 @@
     {
       "key": "WEB3_CHAT_MODE",
       "title": "Web3 Chat Mode",
-      "description": "Controls ChainGPT routing behavior.",
-      "usage": "Defaults to on for this crypto bot.",
-      "howToGet": "Set in environment if you need to override behavior.",
+      "description": "Controls Web3 routing behavior.",
+      "usage": "Defaults to on.",
+      "howToGet": "Set only if needed.",
       "example": "on",
       "isSecret": false,
       "required": false
@@ -368,8 +369,8 @@
       "key": "AI_TIMEOUT_MS",
       "title": "AI Timeout",
       "description": "Maximum AI request time in milliseconds.",
-      "usage": "Defaults to 600000 for long media or reasoning calls.",
-      "howToGet": "Set in environment only if needed.",
+      "usage": "Defaults to 600000.",
+      "howToGet": "Set only if needed.",
       "example": "600000",
       "isSecret": false,
       "required": false
@@ -379,7 +380,7 @@
       "title": "AI Max Retries",
       "description": "Retry count for transient AI gateway failures.",
       "usage": "Defaults to 2.",
-      "howToGet": "Set in environment only if needed.",
+      "howToGet": "Set only if needed.",
       "example": "2",
       "isSecret": false,
       "required": false
@@ -387,9 +388,9 @@
     {
       "key": "CONCURRENCY",
       "title": "Concurrency",
-      "description": "General concurrency control setting reserved for future internal tuning.",
-      "usage": "Defaults to 20. Telegram runner remains conservative for reliability.",
-      "howToGet": "Set in environment only if needed.",
+      "description": "Runtime tuning value reserved for future use.",
+      "usage": "Defaults to 20.",
+      "howToGet": "Set only if needed.",
       "example": "20",
       "isSecret": false,
       "required": false
@@ -398,7 +399,7 @@
       "key": "COOKMYBOTS_X_ENDPOINT",
       "title": "CookMyBots X Proxy Endpoint",
       "description": "Base endpoint for CookMyBots X Proxy.",
-      "usage": "Used to fetch official X posts. If missing, X announcement features are disabled safely.",
+      "usage": "Used for /announcements and alert polling. If missing, X features degrade gracefully.",
       "howToGet": "Provided by CookMyBots after enabling X integration.",
       "example": "https://api.cookmybots.com/api/x",
       "isSecret": false,
@@ -408,8 +409,8 @@
       "key": "COOKMYBOTS_X_KEY",
       "title": "CookMyBots X Proxy Key",
       "description": "Secret key for CookMyBots X Proxy.",
-      "usage": "Required for X announcement monitoring. If missing, /announcements and alert checks degrade gracefully.",
-      "howToGet": "Provided by CookMyBots. Also connect an X account in the CookMyBots UI.",
+      "usage": "Required for X announcement monitoring. If missing, X features degrade gracefully.",
+      "howToGet": "Provided by CookMyBots. Connect X in the CookMyBots UI.",
       "example": "cmb_x_...",
       "isSecret": true,
       "required": false
@@ -429,7 +430,7 @@
       "title": "Scheduler Poll Interval",
       "description": "How often the in-process scheduler checks due digests.",
       "usage": "Defaults to 60000.",
-      "howToGet": "Set in environment only if needed.",
+      "howToGet": "Set only if needed.",
       "example": "60000",
       "isSecret": false,
       "required": false
@@ -439,7 +440,7 @@
       "title": "Announcement Poll Interval",
       "description": "How often X announcement checks run.",
       "usage": "Defaults to 300000.",
-      "howToGet": "Set in environment only if needed.",
+      "howToGet": "Set only if needed.",
       "example": "300000",
       "isSecret": false,
       "required": false
@@ -468,46 +469,47 @@
   "commandDocs": [
     {
       "command": "/start",
-      "description": "Introduces MemePulse Watcher and explains how group admins can configure token insights.",
+      "description": "Greets the user or group, summarizes Coin Tailer, and points to /help.",
       "usage": "/start",
       "examples": [
-        "User: /start → Bot: Welcome to MemePulse Watcher..."
+        "User: /start → Bot: Welcome to Coin Tailer..."
       ],
       "notes": "General command."
     },
     {
       "command": "/help",
-      "description": "Shows all public commands, usage examples, and a short reminder to create TELEGRAM_BOT_TOKEN with the verified @BotFather instead of sending tokens in chat.",
+      "description": "Shows public commands, examples, admin-only notes, prompt behavior, and BotFather token guidance.",
       "usage": "/help",
       "examples": [
-        "User: /help → Bot: MemePulse Watcher commands..."
+        "User: /help → Bot: Coin Tailer commands..."
       ],
       "notes": "General command."
     },
     {
       "command": "/setup",
-      "description": "Initializes the current group for token tracking.",
+      "description": "Initializes the current group for Coin Tailer tracking.",
       "usage": "/setup",
       "examples": [
-        "Admin: /setup → Bot: MemePulse is set up for this chat."
+        "Admin: /setup → Bot: Coin Tailer is set up for this chat."
       ],
-      "notes": "Admin only in groups."
+      "notes": "Admin only."
     },
     {
       "command": "/addtoken",
-      "description": "Adds a token or memecoin to the current group's watchlist.",
+      "description": "Adds a token to the current group watchlist and optionally attaches an official X handle.",
       "usage": "/addtoken PEPE or /addtoken PEPE x=officialHandle",
       "examples": [
-        "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE."
+        "Admin: /addtoken → Bot prompts for PEPE, then X handle or skip.",
+        "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE with official X handle @pepecoineth."
       ],
-      "notes": "Admin only. Optional x= adds official X handles for announcement monitoring."
+      "notes": "Admin only. Missing token starts a two-step prompt."
     },
     {
       "command": "/removetoken",
-      "description": "Removes a token from the current group's watchlist.",
+      "description": "Removes a token from the current group watchlist.",
       "usage": "/removetoken PEPE",
       "examples": [
-        "Admin: /removetoken PEPE → Bot: Removed PEPE from this group's watchlist."
+        "Admin: /removetoken → Bot prompts with tracked token choices."
       ],
       "notes": "Admin only."
     },
@@ -522,12 +524,12 @@
     },
     {
       "command": "/price",
-      "description": "Shows current price, 24h movement, volume, market cap, and data timestamp.",
+      "description": "Shows current price, 24h movement, volume, market cap, and data timestamp using CoinGecko.",
       "usage": "/price PEPE",
       "examples": [
-        "User: /price PEPE → Bot: PEPE price..."
+        "User: /price → Bot prompts for token symbol."
       ],
-      "notes": "Uses CoinGecko market data."
+      "notes": "If one watched token exists, the prompt offers it as the default."
     },
     {
       "command": "/trend",
@@ -540,30 +542,30 @@
     },
     {
       "command": "/digest",
-      "description": "Generates an on-demand daily-style token digest.",
+      "description": "Generates an on-demand daily-style token digest when CookMyBots AI is configured.",
       "usage": "/digest PEPE",
       "examples": [
-        "User: /digest PEPE → Bot: Building the digest now..."
+        "User: /digest → Bot prompts for token symbol."
       ],
-      "notes": "Uses ChainGPT through CookMyBots AI Gateway when configured."
+      "notes": "Gracefully reports when AI env vars are missing."
     },
     {
       "command": "/announcements",
-      "description": "Shows recent detected official X announcements for a token.",
+      "description": "Shows recent official X announcements for a token.",
       "usage": "/announcements PEPE",
       "examples": [
         "User: /announcements PEPE → Bot: Recent PEPE announcements..."
       ],
-      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars. Degrades gracefully when X env vars are missing."
+      "notes": "Requires an official X handle plus CookMyBots X Proxy env vars. Degrades gracefully when missing."
     },
     {
       "command": "/settime",
       "description": "Sets daily digest delivery time for the group.",
       "usage": "/settime 09:00",
       "examples": [
-        "Admin: /settime 09:00 → Bot: Daily digest time set to 09:00."
+        "Admin: /settime → Bot prompts for HH:mm."
       ],
-      "notes": "Admin only. Uses 24-hour HH:mm format."
+      "notes": "Admin only. Validates 24-hour HH:mm."
     },
     {
       "command": "/settimezone",
@@ -572,14 +574,14 @@
       "examples": [
         "Admin: /settimezone America/New_York → Bot: Timezone set to America/New_York."
       ],
-      "notes": "Admin only. Must be a valid IANA timezone."
+      "notes": "Admin only. Validates IANA timezone."
     },
     {
       "command": "/alerts",
       "description": "Turns immediate major announcement alerts on or off.",
       "usage": "/alerts on or /alerts off",
       "examples": [
-        "Admin: /alerts on → Bot: Immediate major announcement alerts are on."
+        "Admin: /alerts → Bot prompts for on or off."
       ],
       "notes": "Admin only."
     },
@@ -603,7 +605,7 @@
     },
     {
       "command": "/settings",
-      "description": "Displays the group's current MemePulse configuration.",
+      "description": "Displays the group's current Coin Tailer configuration.",
       "usage": "/settings",
       "examples": [
         "Admin: /settings → Bot: Group settings..."
@@ -615,9 +617,18 @@
       "description": "Clears the user's saved bot memory for the current chat.",
       "usage": "/reset",
       "examples": [
-        "User: /reset → Bot: Your MemePulse memory has been cleared for this chat."
+        "User: /reset → Bot: Your Coin Tailer memory has been cleared for this chat."
       ],
       "notes": "Memory clear command."
+    },
+    {
+      "command": "/cancel",
+      "description": "Cancels the current user's pending missing-detail prompt in the current chat.",
+      "usage": "/cancel",
+      "examples": [
+        "User: /cancel → Bot: Canceled any pending prompt."
+      ],
+      "notes": "Users can also reply cancel or stop."
     }
   ],
   "runStatuses": {
@@ -2405,12 +2416,12 @@
       "answerMode": "chitchat"
     },
     "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama": {
-      "phase": "status",
+      "phase": "reindex",
       "stage": "chat",
       "runId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama",
       "lastUserMessage": "I've added this commands but it's not promoting me to add any details what do I do",
       "startedAt": "2026-07-01T17:13:41.569Z",
-      "updatedAt": "2026-07-01T17:45:48.450Z",
+      "updatedAt": "2026-07-01T17:49:23.666Z",
       "message": "Preparing workspace for safe edits…",
       "commands": [
         {
@@ -3442,12 +3453,12 @@
     }
   },
   "runStatus": {
-    "phase": "status",
+    "phase": "reindex",
     "stage": "chat",
     "runId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1:mr2d9jl9:xm0ama",
     "lastUserMessage": "I've added this commands but it's not promoting me to add any details what do I do",
     "startedAt": "2026-07-01T17:13:41.569Z",
-    "updatedAt": "2026-07-01T17:45:48.450Z",
+    "updatedAt": "2026-07-01T17:49:23.666Z",
     "message": "Preparing workspace for safe edits…",
     "commands": [
       {

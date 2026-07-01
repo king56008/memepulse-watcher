@@ -1,0 +1,588 @@
+{
+  "projectId": "aec7c4dc-fc60-466b-94ea-1da3fa7909f1",
+  "commands": [
+    {
+      "command": "/addtoken",
+      "description": "Adds a token or memecoin to the current group's watchlist.",
+      "usage": "/addtoken PEPE or /addtoken PEPE x=officialHandle",
+      "examples": [
+        "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE."
+      ],
+      "notes": "Admin only. Optional x= adds official X handles for announcement monitoring."
+    },
+    {
+      "command": "/alerts",
+      "description": "Turns immediate major announcement alerts on or off.",
+      "usage": "/alerts on or /alerts off",
+      "examples": [
+        "Admin: /alerts on → Bot: Immediate major announcement alerts are on."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/announcements",
+      "description": "Shows recent detected official X announcements for a token.",
+      "usage": "/announcements PEPE",
+      "examples": [
+        "User: /announcements PEPE → Bot: Recent PEPE announcements..."
+      ],
+      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars."
+    },
+    {
+      "command": "/digest",
+      "description": "Generates an on-demand daily-style token digest.",
+      "usage": "/digest PEPE",
+      "examples": [
+        "User: /digest PEPE → Bot: Building the digest now..."
+      ],
+      "notes": "Uses ChainGPT through CookMyBots AI Gateway when configured."
+    },
+    {
+      "command": "/help",
+      "description": "Shows all public commands and usage examples.",
+      "usage": "/help",
+      "examples": [
+        "User: /help → Bot: MemePulse Watcher commands..."
+      ],
+      "notes": "General command."
+    },
+    {
+      "command": "/pause",
+      "description": "Pauses scheduled digests and alerts for the group.",
+      "usage": "/pause",
+      "examples": [
+        "Admin: /pause → Bot: Scheduled digests and alerts are paused for this group."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/price",
+      "description": "Shows current price, 24h movement, volume, market cap, and data timestamp.",
+      "usage": "/price PEPE",
+      "examples": [
+        "User: /price PEPE → Bot: PEPE price..."
+      ],
+      "notes": "Uses CoinGecko market data."
+    },
+    {
+      "command": "/removetoken",
+      "description": "Removes a token from the current group's watchlist.",
+      "usage": "/removetoken PEPE",
+      "examples": [
+        "Admin: /removetoken PEPE → Bot: Removed PEPE from this group's watchlist."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/reset",
+      "description": "Clears the user's saved bot memory for the current chat.",
+      "usage": "/reset",
+      "examples": [
+        "User: /reset → Bot: Your MemePulse memory has been cleared for this chat."
+      ],
+      "notes": "Memory clear command."
+    },
+    {
+      "command": "/resume",
+      "description": "Resumes scheduled digests and alerts for the group.",
+      "usage": "/resume",
+      "examples": [
+        "Admin: /resume → Bot: Scheduled digests and alerts are resumed for this group."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/settime",
+      "description": "Sets daily digest delivery time for the group.",
+      "usage": "/settime 09:00",
+      "examples": [
+        "Admin: /settime 09:00 → Bot: Daily digest time set to 09:00."
+      ],
+      "notes": "Admin only. Uses 24-hour HH:mm format."
+    },
+    {
+      "command": "/settimezone",
+      "description": "Sets the timezone used for scheduled digests.",
+      "usage": "/settimezone UTC",
+      "examples": [
+        "Admin: /settimezone America/New_York → Bot: Timezone set to America/New_York."
+      ],
+      "notes": "Admin only. Must be a valid IANA timezone."
+    },
+    {
+      "command": "/settings",
+      "description": "Displays the group's current MemePulse configuration.",
+      "usage": "/settings",
+      "examples": [
+        "Admin: /settings → Bot: Group settings..."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/setup",
+      "description": "Initializes the current group for token tracking.",
+      "usage": "/setup",
+      "examples": [
+        "Admin: /setup → Bot: MemePulse is set up for this chat."
+      ],
+      "notes": "Admin only in groups."
+    },
+    {
+      "command": "/start",
+      "description": "Introduces MemePulse Watcher and explains how group admins can configure token insights.",
+      "usage": "/start",
+      "examples": [
+        "User: /start → Bot: Welcome to MemePulse Watcher..."
+      ],
+      "notes": "General command."
+    },
+    {
+      "command": "/tokens",
+      "description": "Lists tokens tracked in the current group.",
+      "usage": "/tokens",
+      "examples": [
+        "User: /tokens → Bot: Tracked tokens: PEPE, DOGE"
+      ],
+      "notes": "Group command."
+    },
+    {
+      "command": "/trend",
+      "description": "Shows a compact trend summary for a token.",
+      "usage": "/trend PEPE",
+      "examples": [
+        "User: /trend PEPE → Bot: PEPE trend..."
+      ],
+      "notes": "Informational only, not financial advice."
+    }
+  ],
+  "aiMessages": [
+    {
+      "role": "user",
+      "content": "Build a bot that share daily insights about a particular Memecoin or token e.g it shares daily trends(up and down trends) about the token and if possible major announcement on x it share to telegram group subscribers"
+    },
+    {
+      "role": "assistant",
+      "content": "Built MemePulse Watcher as a complete Telegram bot with group admin setup, token tracking, CoinGecko market data, scheduled digests, optional ChainGPT summaries, CookMyBots X Proxy announcement monitoring, MongoDB persistence with in-memory fallback, docs, and deployment-safe polling.\n\nFiles touched (27): .env.sample, DOCS.md, README.md, eslint.config.js, package.json, src/bot.js…\nValidation: ✅ project passes syntax/basic checks after this edit."
+    }
+  ],
+  "createdBy": "6a4546a3b431b74f8b8ed94f",
+  "source": "ai-cold-start",
+  "description": "",
+  "platform": "telegram",
+  "usesWebApp": false,
+  "telegramKind": "bot",
+  "planMarkdown": "Bot: MemePulse Watcher\n\nSummary:\nA Telegram group bot that monitors selected memecoins or tokens, publishes daily trend summaries, and forwards important announcements from official X accounts to subscribed groups.\n\nProduct goals:\nProvide Telegram communities with concise, scheduled daily insights for selected memecoins or tokens. The bot should track price movement, volume, market-cap changes, sentiment-relevant trend signals, and notable official announcements from X. Group admins can subscribe a group to one or more tokens, configure delivery time, and choose whether announcement alerts are posted immediately or included only in the daily digest. The product should prioritize reliability, clear summaries, and anti-spam controls over speculative trading advice.\n\nHigh-level architecture:\nRun as a single Node.js ESM service using grammY. The process initializes the bot with TELEGRAMBOTTOKEN, connects to MongoDB, loads active subscriptions, and starts polling or webhook handling depending on deployment configuration. Core modules should include: Telegram interface layer for commands and group interactions; subscription manager for group-token configuration; token market data provider abstraction for prices, volume, liquidity, market cap, and historical candles; X announcement provider abstraction for monitoring official project accounts and keywords; insight engine for comparing current metrics against previous snapshots; scheduler for daily digest jobs and periodic announcement checks; notification dispatcher for formatted Telegram messages; and persistence layer using MongoDB. The scheduler runs in-process because the service is a single process. It should maintain job state in MongoDB to avoid duplicate sends after restarts. External APIs should be wrapped behind provider interfaces so data sources can be replaced without changing bot logic. Announcement detection should prefer official X API access where available; if unavailable, use a compliant approved data provider rather than fragile scraping. All outgoing group messages should go through a rate-limited dispatcher.\n\nData model:\nMongoDB collections: users for Telegram user profile, role hints, and first-seen timestamps; groups for Telegram chat ID, title, admin configuration status, timezone, default digest time, language, and enabled flags; tokens for symbol, name, chain, contract address, market-data provider IDs, official website, official X handles, tracking keywords, and verification status; subscriptions for group-to-token mapping, alert preferences, digest schedule, thresholds, enabled metrics, created-by admin, and status; marketsnapshots for token metrics by timestamp including price, 24h change, volume, market cap, liquidity, holder count if available, and source metadata; xposts for tracked announcements with post ID, handle, text, URL, timestamp, classification, and delivered status; digestruns for scheduled job execution state, target group, token, period, generated summary, send status, and deduplication key; auditlogs for admin actions, configuration changes, API errors, and delivery failures. Indexes should cover chat ID, token identity, subscription status, snapshot timestamps, X post IDs, and digest deduplication keys.\n\nKey flows:\nOnboarding flow: an admin adds the bot to a group, grants needed permissions, runs /setup, selects a token by symbol or contract address, confirms official X handles, sets timezone and daily digest time, then activates the subscription. Daily insight flow: scheduler finds due subscriptions, fetches latest market data, compares against previous 24h and 7d snapshots, generates a concise trend report, stores a digestrun, and sends the message to the group. Announcement flow: periodic checker fetches new posts from configured official X handles, filters for major announcement signals such as listings, partnerships, launches, burns, audits, governance, tokenomics, exploits, or emergency notices, deduplicates by post ID, then either posts immediately or queues for the next digest based on subscription settings. Manual query flow: users run token commands such as /trend or /price in the group, the bot fetches current data, applies rate limits, and replies with a compact status card. Admin management flow: admins can add or remove tokens, change alert thresholds, pause notifications, and preview the next digest. Failure flow: if external APIs fail, the bot records the failure, retries with backoff, sends degraded summaries using cached data when safe, and avoids posting stale data without labeling it.\n\nTech stack:\nNode.js ESM runtime with grammY for Telegram bot handling. MongoDB for persistence, job state, subscriptions, snapshots, and deduplication. In-process scheduler for daily digests and periodic X checks. Market data provider integrations through HTTP APIs with provider adapters. X announcement integration through official API access or an approved data provider. Environment variables for TELEGRAMBOTTOKEN, MongoDB connection string, market data API credentials, X/API credentials, bot environment, webhook URL if used, and scheduler settings. Logging should be structured JSON. File/image output, if later needed for charts, should use generic object storage or filesystem storage.\n\nNon-functional requirements:\nReliability: persist job state and use deduplication keys so restarts do not create duplicate messages. Scalability: single-process design should batch API calls, cache provider responses, and rate-limit outgoing Telegram messages; if usage grows, optimize within the same service before introducing new infrastructure. Security: only group admins can change subscriptions; store secrets only in environment variables; validate contract addresses and external URLs; avoid accepting arbitrary executable content. Compliance: respect Telegram rules, X access terms, and market data provider rate limits. Accuracy: label all generated insights as informational, not financial advice; show data source timestamps; distinguish confirmed official announcements from keyword-based signals. Observability: log command usage, scheduled sends, provider latency, API failures, and Telegram delivery errors. Maintainability: use clean provider interfaces, separate command handlers from business logic, and keep formatting templates centralized. Anti-spam: enforce per-group command cooldowns, announcement deduplication, alert severity thresholds, and configurable quiet hours.\n\nBot commands:\n• start — Introduces the bot and explains how to configure token insights in a group. (usage: /start) [general]\n• setup — Starts the admin setup flow for a group subscription. (usage: /setup) [admin]\n• addtoken — Adds a token or memecoin to the current group's watchlist by symbol or contract address. (usage: /addtoken PEPE or /addtoken 0x...) [admin]\n• removetoken — Removes a token from the current group's watchlist. (usage: /removetoken PEPE) [admin]\n• tokens — Lists all tokens currently tracked in the group. (usage: /tokens) [group]\n• trend — Shows the latest trend summary for a tracked token. (usage: /trend PEPE) [insights]\n• price — Shows current price, 24h movement, volume, and data timestamp for a token. (usage: /price PEPE) [insights]\n• digest — Generates an on-demand daily-style digest for a tracked token. (usage: /digest PEPE) [insights]\n• announcements — Shows recent official X announcements detected for a tracked token. (usage: /announcements PEPE) [insights]\n• settime — Sets the daily digest delivery time for the group. (usage: /settime 09:00) [admin]\n• settimezone — Sets the timezone used for scheduled digests. (usage: /settimezone UTC or /settimezone America/NewYork) [admin]\n• alerts — Configures immediate announcement alerts and trend threshold alerts. (usage: /alerts on or /alerts off) [admin]\n• pause — Temporarily pauses scheduled digests and alerts for the group. (usage: /pause) [admin]\n• resume — Resumes scheduled digests and alerts for the group. (usage: /resume) [admin]\n• settings — Displays the group's current bot configuration. (usage: /settings) [admin]\n• help — Shows available commands and usage examples. (usage: /help) [general]\n",
+  "planSections": {
+    "productGoals": "Provide Telegram communities with concise, scheduled daily insights for selected memecoins or tokens. The bot should track price movement, volume, market-cap changes, sentiment-relevant trend signals, and notable official announcements from X. Group admins can subscribe a group to one or more tokens, configure delivery time, and choose whether announcement alerts are posted immediately or included only in the daily digest. The product should prioritize reliability, clear summaries, and anti-spam controls over speculative trading advice.",
+    "highLevelArchitecture": "Run as a single Node.js ESM service using grammY. The process initializes the bot with TELEGRAMBOTTOKEN, connects to MongoDB, loads active subscriptions, and starts polling or webhook handling depending on deployment configuration. Core modules should include: Telegram interface layer for commands and group interactions; subscription manager for group-token configuration; token market data provider abstraction for prices, volume, liquidity, market cap, and historical candles; X announcement provider abstraction for monitoring official project accounts and keywords; insight engine for comparing current metrics against previous snapshots; scheduler for daily digest jobs and periodic announcement checks; notification dispatcher for formatted Telegram messages; and persistence layer using MongoDB. The scheduler runs in-process because the service is a single process. It should maintain job state in MongoDB to avoid duplicate sends after restarts. External APIs should be wrapped behind provider interfaces so data sources can be replaced without changing bot logic. Announcement detection should prefer official X API access where available; if unavailable, use a compliant approved data provider rather than fragile scraping. All outgoing group messages should go through a rate-limited dispatcher.",
+    "dataModel": "MongoDB collections: users for Telegram user profile, role hints, and first-seen timestamps; groups for Telegram chat ID, title, admin configuration status, timezone, default digest time, language, and enabled flags; tokens for symbol, name, chain, contract address, market-data provider IDs, official website, official X handles, tracking keywords, and verification status; subscriptions for group-to-token mapping, alert preferences, digest schedule, thresholds, enabled metrics, created-by admin, and status; marketsnapshots for token metrics by timestamp including price, 24h change, volume, market cap, liquidity, holder count if available, and source metadata; xposts for tracked announcements with post ID, handle, text, URL, timestamp, classification, and delivered status; digestruns for scheduled job execution state, target group, token, period, generated summary, send status, and deduplication key; auditlogs for admin actions, configuration changes, API errors, and delivery failures. Indexes should cover chat ID, token identity, subscription status, snapshot timestamps, X post IDs, and digest deduplication keys.",
+    "keyFlows": "Onboarding flow: an admin adds the bot to a group, grants needed permissions, runs /setup, selects a token by symbol or contract address, confirms official X handles, sets timezone and daily digest time, then activates the subscription. Daily insight flow: scheduler finds due subscriptions, fetches latest market data, compares against previous 24h and 7d snapshots, generates a concise trend report, stores a digestrun, and sends the message to the group. Announcement flow: periodic checker fetches new posts from configured official X handles, filters for major announcement signals such as listings, partnerships, launches, burns, audits, governance, tokenomics, exploits, or emergency notices, deduplicates by post ID, then either posts immediately or queues for the next digest based on subscription settings. Manual query flow: users run token commands such as /trend or /price in the group, the bot fetches current data, applies rate limits, and replies with a compact status card. Admin management flow: admins can add or remove tokens, change alert thresholds, pause notifications, and preview the next digest. Failure flow: if external APIs fail, the bot records the failure, retries with backoff, sends degraded summaries using cached data when safe, and avoids posting stale data without labeling it.",
+    "techStack": "Node.js ESM runtime with grammY for Telegram bot handling. MongoDB for persistence, job state, subscriptions, snapshots, and deduplication. In-process scheduler for daily digests and periodic X checks. Market data provider integrations through HTTP APIs with provider adapters. X announcement integration through official API access or an approved data provider. Environment variables for TELEGRAMBOTTOKEN, MongoDB connection string, market data API credentials, X/API credentials, bot environment, webhook URL if used, and scheduler settings. Logging should be structured JSON. File/image output, if later needed for charts, should use generic object storage or filesystem storage.",
+    "nonFunctional": "Reliability: persist job state and use deduplication keys so restarts do not create duplicate messages. Scalability: single-process design should batch API calls, cache provider responses, and rate-limit outgoing Telegram messages; if usage grows, optimize within the same service before introducing new infrastructure. Security: only group admins can change subscriptions; store secrets only in environment variables; validate contract addresses and external URLs; avoid accepting arbitrary executable content. Compliance: respect Telegram rules, X access terms, and market data provider rate limits. Accuracy: label all generated insights as informational, not financial advice; show data source timestamps; distinguish confirmed official announcements from keyword-based signals. Observability: log command usage, scheduled sends, provider latency, API failures, and Telegram delivery errors. Maintainability: use clean provider interfaces, separate command handlers from business logic, and keep formatting templates centralized. Anti-spam: enforce per-group command cooldowns, announcement deduplication, alert severity thresholds, and configurable quiet hours."
+  },
+  "planCommands": [
+    {
+      "name": "start",
+      "description": "Introduces the bot and explains how to configure token insights in a group.",
+      "usage": "/start",
+      "category": "general"
+    },
+    {
+      "name": "setup",
+      "description": "Starts the admin setup flow for a group subscription.",
+      "usage": "/setup",
+      "category": "admin"
+    },
+    {
+      "name": "addtoken",
+      "description": "Adds a token or memecoin to the current group's watchlist by symbol or contract address.",
+      "usage": "/addtoken PEPE or /addtoken 0x...",
+      "category": "admin"
+    },
+    {
+      "name": "removetoken",
+      "description": "Removes a token from the current group's watchlist.",
+      "usage": "/removetoken PEPE",
+      "category": "admin"
+    },
+    {
+      "name": "tokens",
+      "description": "Lists all tokens currently tracked in the group.",
+      "usage": "/tokens",
+      "category": "group"
+    },
+    {
+      "name": "trend",
+      "description": "Shows the latest trend summary for a tracked token.",
+      "usage": "/trend PEPE",
+      "category": "insights"
+    },
+    {
+      "name": "price",
+      "description": "Shows current price, 24h movement, volume, and data timestamp for a token.",
+      "usage": "/price PEPE",
+      "category": "insights"
+    },
+    {
+      "name": "digest",
+      "description": "Generates an on-demand daily-style digest for a tracked token.",
+      "usage": "/digest PEPE",
+      "category": "insights"
+    },
+    {
+      "name": "announcements",
+      "description": "Shows recent official X announcements detected for a tracked token.",
+      "usage": "/announcements PEPE",
+      "category": "insights"
+    },
+    {
+      "name": "settime",
+      "description": "Sets the daily digest delivery time for the group.",
+      "usage": "/settime 09:00",
+      "category": "admin"
+    },
+    {
+      "name": "settimezone",
+      "description": "Sets the timezone used for scheduled digests.",
+      "usage": "/settimezone UTC or /settimezone America/NewYork",
+      "category": "admin"
+    },
+    {
+      "name": "alerts",
+      "description": "Configures immediate announcement alerts and trend threshold alerts.",
+      "usage": "/alerts on or /alerts off",
+      "category": "admin"
+    },
+    {
+      "name": "pause",
+      "description": "Temporarily pauses scheduled digests and alerts for the group.",
+      "usage": "/pause",
+      "category": "admin"
+    },
+    {
+      "name": "resume",
+      "description": "Resumes scheduled digests and alerts for the group.",
+      "usage": "/resume",
+      "category": "admin"
+    },
+    {
+      "name": "settings",
+      "description": "Displays the group's current bot configuration.",
+      "usage": "/settings",
+      "category": "admin"
+    },
+    {
+      "name": "help",
+      "description": "Shows available commands and usage examples.",
+      "usage": "/help",
+      "category": "general"
+    }
+  ],
+  "envVarDocs": [
+    {
+      "key": "TELEGRAM_BOT_TOKEN",
+      "title": "Telegram Bot Token",
+      "description": "Token used by grammY to connect to Telegram.",
+      "usage": "Required at boot. If missing, the bot prints guidance and exits safely.",
+      "howToGet": "Create a bot with BotFather on Telegram.",
+      "example": "123456:ABCDEF...",
+      "isSecret": true,
+      "required": true
+    },
+    {
+      "key": "MONGODB_URI",
+      "title": "MongoDB URI",
+      "description": "Stores groups, tokens, subscriptions, snapshots, X posts, digest runs, audit logs, cursors, and memory.",
+      "usage": "If missing, the bot runs with temporary in-memory storage.",
+      "howToGet": "Use MongoDB Atlas or another MongoDB provider.",
+      "example": "mongodb+srv://user:pass@cluster.example/db",
+      "isSecret": true,
+      "required": false
+    },
+    {
+      "key": "COOKMYBOTS_AI_ENDPOINT",
+      "title": "CookMyBots AI Endpoint",
+      "description": "Base URL for CookMyBots AI Gateway.",
+      "usage": "Used for ChainGPT Web3 digest summaries. The bot appends /chaingpt/chat internally.",
+      "howToGet": "CookMyBots provides this endpoint.",
+      "example": "https://api.cookmybots.com/api/ai",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "COOKMYBOTS_AI_KEY",
+      "title": "CookMyBots AI Key",
+      "description": "Secret key for CookMyBots AI Gateway.",
+      "usage": "Enables AI-generated Web3 summaries. If missing, deterministic summaries are used.",
+      "howToGet": "Provided by CookMyBots.",
+      "example": "cmb_ai_...",
+      "isSecret": true,
+      "required": false
+    },
+    {
+      "key": "WEB3_CHAT_MODE",
+      "title": "Web3 Chat Mode",
+      "description": "Controls ChainGPT routing behavior.",
+      "usage": "Defaults to on for this crypto bot.",
+      "howToGet": "Set in environment if you need to override behavior.",
+      "example": "on",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "AI_TIMEOUT_MS",
+      "title": "AI Timeout",
+      "description": "Maximum AI request time in milliseconds.",
+      "usage": "Defaults to 600000 for long media or reasoning calls.",
+      "howToGet": "Set in environment only if needed.",
+      "example": "600000",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "AI_MAX_RETRIES",
+      "title": "AI Max Retries",
+      "description": "Retry count for transient AI gateway failures.",
+      "usage": "Defaults to 2.",
+      "howToGet": "Set in environment only if needed.",
+      "example": "2",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "CONCURRENCY",
+      "title": "Concurrency",
+      "description": "General concurrency control setting reserved for future internal tuning.",
+      "usage": "Defaults to 20. Telegram runner remains conservative for reliability.",
+      "howToGet": "Set in environment only if needed.",
+      "example": "20",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "COOKMYBOTS_X_ENDPOINT",
+      "title": "CookMyBots X Proxy Endpoint",
+      "description": "Base endpoint for CookMyBots X Proxy.",
+      "usage": "Used to fetch official X posts. The bot never calls X APIs directly.",
+      "howToGet": "Provided by CookMyBots after enabling X integration.",
+      "example": "https://api.cookmybots.com/api/x",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "COOKMYBOTS_X_KEY",
+      "title": "CookMyBots X Proxy Key",
+      "description": "Secret key for CookMyBots X Proxy.",
+      "usage": "Required for X announcement monitoring. Users must connect X in the CookMyBots UI.",
+      "howToGet": "Provided by CookMyBots.",
+      "example": "cmb_x_...",
+      "isSecret": true,
+      "required": false
+    },
+    {
+      "key": "COINGECKO_API_BASE",
+      "title": "CoinGecko API Base",
+      "description": "Market data provider base URL.",
+      "usage": "Defaults to the public CoinGecko API base.",
+      "howToGet": "No key is needed for the default public integration.",
+      "example": "https://api.coingecko.com/api/v3",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "SCHEDULER_POLL_MS",
+      "title": "Scheduler Poll Interval",
+      "description": "How often the in-process scheduler checks due digests.",
+      "usage": "Defaults to 60000.",
+      "howToGet": "Set in environment only if needed.",
+      "example": "60000",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "ANNOUNCEMENT_POLL_MS",
+      "title": "Announcement Poll Interval",
+      "description": "How often X announcement checks run.",
+      "usage": "Defaults to 300000.",
+      "howToGet": "Set in environment only if needed.",
+      "example": "300000",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "DEFAULT_TIMEZONE",
+      "title": "Default Timezone",
+      "description": "Default timezone for new group digest schedules.",
+      "usage": "Defaults to UTC.",
+      "howToGet": "Use an IANA timezone name.",
+      "example": "UTC",
+      "isSecret": false,
+      "required": false
+    },
+    {
+      "key": "DEFAULT_DIGEST_TIME",
+      "title": "Default Digest Time",
+      "description": "Default daily digest time for new groups.",
+      "usage": "Defaults to 09:00.",
+      "howToGet": "Use HH:mm 24-hour format.",
+      "example": "09:00",
+      "isSecret": false,
+      "required": false
+    }
+  ],
+  "commandDocs": [
+    {
+      "command": "/start",
+      "description": "Introduces MemePulse Watcher and explains how group admins can configure token insights.",
+      "usage": "/start",
+      "examples": [
+        "User: /start → Bot: Welcome to MemePulse Watcher..."
+      ],
+      "notes": "General command."
+    },
+    {
+      "command": "/help",
+      "description": "Shows all public commands and usage examples.",
+      "usage": "/help",
+      "examples": [
+        "User: /help → Bot: MemePulse Watcher commands..."
+      ],
+      "notes": "General command."
+    },
+    {
+      "command": "/setup",
+      "description": "Initializes the current group for token tracking.",
+      "usage": "/setup",
+      "examples": [
+        "Admin: /setup → Bot: MemePulse is set up for this chat."
+      ],
+      "notes": "Admin only in groups."
+    },
+    {
+      "command": "/addtoken",
+      "description": "Adds a token or memecoin to the current group's watchlist.",
+      "usage": "/addtoken PEPE or /addtoken PEPE x=officialHandle",
+      "examples": [
+        "Admin: /addtoken PEPE x=pepecoineth → Bot: Tracking PEPE."
+      ],
+      "notes": "Admin only. Optional x= adds official X handles for announcement monitoring."
+    },
+    {
+      "command": "/removetoken",
+      "description": "Removes a token from the current group's watchlist.",
+      "usage": "/removetoken PEPE",
+      "examples": [
+        "Admin: /removetoken PEPE → Bot: Removed PEPE from this group's watchlist."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/tokens",
+      "description": "Lists tokens tracked in the current group.",
+      "usage": "/tokens",
+      "examples": [
+        "User: /tokens → Bot: Tracked tokens: PEPE, DOGE"
+      ],
+      "notes": "Group command."
+    },
+    {
+      "command": "/price",
+      "description": "Shows current price, 24h movement, volume, market cap, and data timestamp.",
+      "usage": "/price PEPE",
+      "examples": [
+        "User: /price PEPE → Bot: PEPE price..."
+      ],
+      "notes": "Uses CoinGecko market data."
+    },
+    {
+      "command": "/trend",
+      "description": "Shows a compact trend summary for a token.",
+      "usage": "/trend PEPE",
+      "examples": [
+        "User: /trend PEPE → Bot: PEPE trend..."
+      ],
+      "notes": "Informational only, not financial advice."
+    },
+    {
+      "command": "/digest",
+      "description": "Generates an on-demand daily-style token digest.",
+      "usage": "/digest PEPE",
+      "examples": [
+        "User: /digest PEPE → Bot: Building the digest now..."
+      ],
+      "notes": "Uses ChainGPT through CookMyBots AI Gateway when configured."
+    },
+    {
+      "command": "/announcements",
+      "description": "Shows recent detected official X announcements for a token.",
+      "usage": "/announcements PEPE",
+      "examples": [
+        "User: /announcements PEPE → Bot: Recent PEPE announcements..."
+      ],
+      "notes": "Requires official handles configured with /addtoken and CookMyBots X Proxy env vars."
+    },
+    {
+      "command": "/settime",
+      "description": "Sets daily digest delivery time for the group.",
+      "usage": "/settime 09:00",
+      "examples": [
+        "Admin: /settime 09:00 → Bot: Daily digest time set to 09:00."
+      ],
+      "notes": "Admin only. Uses 24-hour HH:mm format."
+    },
+    {
+      "command": "/settimezone",
+      "description": "Sets the timezone used for scheduled digests.",
+      "usage": "/settimezone UTC",
+      "examples": [
+        "Admin: /settimezone America/New_York → Bot: Timezone set to America/New_York."
+      ],
+      "notes": "Admin only. Must be a valid IANA timezone."
+    },
+    {
+      "command": "/alerts",
+      "description": "Turns immediate major announcement alerts on or off.",
+      "usage": "/alerts on or /alerts off",
+      "examples": [
+        "Admin: /alerts on → Bot: Immediate major announcement alerts are on."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/pause",
+      "description": "Pauses scheduled digests and alerts for the group.",
+      "usage": "/pause",
+      "examples": [
+        "Admin: /pause → Bot: Scheduled digests and alerts are paused for this group."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/resume",
+      "description": "Resumes scheduled digests and alerts for the group.",
+      "usage": "/resume",
+      "examples": [
+        "Admin: /resume → Bot: Scheduled digests and alerts are resumed for this group."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/settings",
+      "description": "Displays the group's current MemePulse configuration.",
+      "usage": "/settings",
+      "examples": [
+        "Admin: /settings → Bot: Group settings..."
+      ],
+      "notes": "Admin only."
+    },
+    {
+      "command": "/reset",
+      "description": "Clears the user's saved bot memory for the current chat.",
+      "usage": "/reset",
+      "examples": [
+        "User: /reset → Bot: Your MemePulse memory has been cleared for this chat."
+      ],
+      "notes": "Memory clear command."
+    }
+  ]
+}

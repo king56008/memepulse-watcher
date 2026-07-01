@@ -1,0 +1,70 @@
+[
+  {
+    "name": "addtoken",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "alerts",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "announcements",
+    "file": "src/commands/insights.js"
+  },
+  {
+    "name": "digest",
+    "file": "src/commands/insights.js"
+  },
+  {
+    "name": "help",
+    "file": "src/commands/help.js"
+  },
+  {
+    "name": "pause",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "price",
+    "file": "src/commands/insights.js"
+  },
+  {
+    "name": "removetoken",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "reset",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "resume",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "settime",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "settimezone",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "settings",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "setup",
+    "file": "src/commands/admin.js"
+  },
+  {
+    "name": "start",
+    "file": "src/commands/start.js"
+  },
+  {
+    "name": "tokens",
+    "file": "src/commands/insights.js"
+  },
+  {
+    "name": "trend",
+    "file": "src/commands/insights.js"
+  }
+]

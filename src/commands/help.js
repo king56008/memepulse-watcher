@@ -19,6 +19,7 @@ export default function register(bot) {
         "/resume - resume scheduled posts",
         "/settings - show group configuration",
         "/reset - clear your bot memory",
+        "To run the bot, create a Telegram token with the verified @BotFather and set it as TELEGRAM_BOT_TOKEN in the project environment. Never send tokens in chat; see README.md or DOCS.md for the setup steps.",
         "Admin commands require group admin permissions. All insights are informational, not financial advice."
       ].join("\n")
     );
